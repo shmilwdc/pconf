@@ -1,0 +1,12 @@
+#!name=TikTok Unlock
+#!desc=解锁 TikTok 区域限制
+#!system=ios
+
+[URL Rewrite]
+(?<=_region=)CN(?=&) JP 307
+(?<=&app_version=)15..(?=.?.?&) 1 307
+
+(?<=\?version_code=)15..(?=.?.?&) 1 307
+
+[MITM]
+hostname = %INSERT% *.musical.ly, *.tiktokv.com, *.byteoversea.com, *.snssdk.com

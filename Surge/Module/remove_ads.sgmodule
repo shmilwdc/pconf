@@ -1,0 +1,35 @@
+#!name=Remove Ads
+#!desc=去广告
+
+[Script]
+# 抖音去广告去水印
+http-request ^https:\/\/.*\.amemv\.com\/aweme\/v.*\/(feed|post) script-path=https://cdn.jsdelivr.net/gh/Choler/Surge@master/Script/Aweme.js, script-update-interval=3600
+http-response ^https:\/\/.*\.amemv\.com\/aweme\/v.*\/(feed|post) requires-body=true,script-path=https://cdn.jsdelivr.net/gh/Choler/Surge@master/Script/Aweme.js, script-update-interval=3600
+
+# 微信公众号去广告
+http-request ^https://mp\.weixin\.qq\.com/mp/getappmsgad script-path=https://cdn.jsdelivr.net/gh/Choler/Surge@master/Script/WeChat.js, script-update-interval=3600
+
+# 油管去广告
+http-request ^https://[\s\S]*\.googlevideo\.com/.*&(oad|ctier) script-path=https://cdn.jsdelivr.net/gh/Choler/Surge@master/Script/YouTube.js, script-update-interval=3600
+
+# 微博去广告
+http-response ^https?://(sdk|wb)app\.uve\.weibo\.com(/interface/sdk/sdkad.php|/wbapplua/wbpullad.lua) requires-body=1,script-path=https://cdn.jsdelivr.net/gh/yichahucha/surge@master/wb_launch.js, script-update-interval=3600
+http-response ^https?://m?api\.weibo\.c(n|om)/2/(statuses/(unread|extend|positives/get|(friends|video)(/|_)(mix)?timeline)|stories/(video_stream|home_list)|(groups|fangle)/timeline|profile/statuses|comments/build_comments|photo/recommend_list|service/picfeed|searchall|cardlist|page|!/photos/pic_recommend_status) requires-body=1,script-path=https://cdn.jsdelivr.net/gh/yichahucha/surge@master/wb_ad.js, script-update-interval=3600
+
+# 知乎去广告
+http-response https://api.zhihu.com/moments/recommend requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/onewayticket255/Surge-Script@master/surge%20zhihu%20feed.js, script-update-interval=3600
+http-response https://api.zhihu.com/topstory/recommend requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/onewayticket255/Surge-Script@master/surge%20zhihu%20recommend.js, script-update-interval=3600
+http-response https://api.zhihu.com/v4/questions requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/onewayticket255/Surge-Script@master/surge%20zhihu%20answer.js, script-update-interval=3600
+http-response https://api.zhihu.com/people/ requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/onewayticket255/Surge-Script@master/surge%20zhihu%20people.js, script-update-interval=3600
+
+# B站去广告
+http-response https://app.bilibili.com/x/v2/space\?access_key requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/onewayticket255/Surge-Script@master/surge%20bilibili%20space.js, script-update-interval=3600
+http-response https://app.bilibili.com/x/resource/show/tab\?access_key requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/onewayticket255/Surge-Script@master/surge%20bilibili%20tab.js, script-update-interval=3600
+http-response https://app.bilibili.com/x/v2/feed/index\?access_key requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/onewayticket255/Surge-Script@master/surge%20bilibili%20feed.js, script-update-interval=3600
+http-response https://app.bilibili.com/x/v2/account/mine\?access_key requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/onewayticket255/Surge-Script@master/surge%20bilibili%20account.js, script-update-interval=3600
+http-response https://app.bilibili.com/x/v2/view\?access_key requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/onewayticket255/Surge-Script@master/surge%20bilibili%20view%20relate.js, script-update-interval=3600
+http-response https://api.bilibili.com/x/v2/reply/main\?access_key requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/onewayticket255/Surge-Script@master/surge%20bilibili%20reply.js, script-update-interval=3600
+http-response https://api.live.bilibili.com/xlive/app-room/v1/index/getInfoByRoom\?access_key requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/onewayticket255/Surge-Script@master/surge%20bilibili%20live.js, script-update-interval=3600
+
+[MITM]
+hostname = %APPEND% *.amemv.com, mp.weixin.qq.com, *.googlevideo.com, api.weibo.cn, mapi.weibo.com, *.uve.weibo.com, api.zhihu.com, www.zhihu.com, app.bilibili.com, api.bilibili.com, api.live.bilibili.com
