@@ -1,0 +1,11 @@
+#!name=Unlock VIP
+#!desc=解锁会员脚本
+#!system=ios
+
+[Script]
+# Termius unlocks local pro v
+# > (From the author @Maasea)
+type=http-response,pattern=https:\/\/api\.termius\.com\/api\/v3\/bulk\/account\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Termius.js
+
+[MITM]
+hostname = %APPEND% api.termius.com
