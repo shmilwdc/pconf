@@ -1,5 +1,6 @@
 #!name=Remove Ads
 #!desc=去广告脚本
+#!system=ios
 
 [Rule]
 # 知乎去广告

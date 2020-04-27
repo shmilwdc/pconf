@@ -1,5 +1,6 @@
 #!name=Historical Price
 #!desc=历史价格脚本
+#!system=ios
 
 [Script]
 # 京东历史价格
